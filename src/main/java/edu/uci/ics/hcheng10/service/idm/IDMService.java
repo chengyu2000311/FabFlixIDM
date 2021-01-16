@@ -1,11 +1,12 @@
-package edu.uci.ics.UCNETID.service.idm;
+package edu.uci.ics.hcheng10.service.idm;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import edu.uci.ics.UCNETID.service.idm.configs.ConfigsModel;
-import edu.uci.ics.UCNETID.service.idm.configs.ServiceConfigs;
-import edu.uci.ics.UCNETID.service.idm.logger.ServiceLogger;
-import edu.uci.ics.UCNETID.service.idm.security.Session;
+import edu.uci.ics.hcheng10.service.idm.configs.ConfigsModel;
+import edu.uci.ics.hcheng10.service.idm.configs.ServiceConfigs;
+import edu.uci.ics.hcheng10.service.idm.core.NewRegisterInfo;
+import edu.uci.ics.hcheng10.service.idm.logger.ServiceLogger;
+import edu.uci.ics.hcheng10.service.idm.security.Session;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.internal.util.ExceptionUtils;
@@ -22,7 +23,7 @@ import java.sql.SQLException;
 
 public class IDMService {
 
-    public static final String RESOURCE_PATH = "edu.uci.ics.UCNETID.service.idm.resources";
+    public static final String RESOURCE_PATH = "edu.uci.ics.hcheng10.service.idm.resources";
 
     public static IDMService service;
     private static ServiceConfigs serviceConfigs;
@@ -32,6 +33,9 @@ public class IDMService {
     public static void main(String[] args) {
         service = new IDMService();
         service.initService(args);
+//        NewRegisterInfo.insertIntoPlevelIfNotExist();
+//        NewRegisterInfo.insertIntoSessionStatus();
+//        NewRegisterInfo.insertIntoUserStatus();
     }
 
     private void initService(String[] args) {

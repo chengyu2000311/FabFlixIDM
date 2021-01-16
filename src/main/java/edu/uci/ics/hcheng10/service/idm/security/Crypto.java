@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.security;
+package edu.uci.ics.hcheng10.service.idm.security;
 
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;

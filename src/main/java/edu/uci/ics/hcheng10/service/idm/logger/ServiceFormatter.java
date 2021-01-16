@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.logger;
+package edu.uci.ics.hcheng10.service.idm.logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

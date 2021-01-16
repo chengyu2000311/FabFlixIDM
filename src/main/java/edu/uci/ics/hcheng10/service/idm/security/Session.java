@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.security;
+package edu.uci.ics.hcheng10.service.idm.security;
 
 import java.sql.Timestamp;
 
@@ -37,7 +37,7 @@ public class Session {
         this.email = email;
         this.sessionID = sessionID;
         this.timeCreated = timeCreated;
-        this.lastUsed = timeCreated;
+        this.lastUsed = lastUsed;
         this.exprTime = exprTime;
     }
 

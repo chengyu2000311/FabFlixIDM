@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.configs;
+package edu.uci.ics.hcheng10.service.idm.configs;
 
 import java.util.Map;
 

@@ -1,6 +1,6 @@
-package edu.uci.ics.UCNETID.service.idm.configs;
+package edu.uci.ics.hcheng10.service.idm.configs;
 
-import edu.uci.ics.UCNETID.service.idm.logger.ServiceLogger;
+import edu.uci.ics.hcheng10.service.idm.logger.ServiceLogger;
 
 public class ServiceConfigs {
 
@@ -17,6 +17,9 @@ public class ServiceConfigs {
     // Default logger configs
     private final String DEFAULT_OUTPUTDIR = "./logs/";
     private final String DEFAULT_OUTPUTFILE = "test.log";
+    // Default session configs
+    private final long DEFAULT_TIMEOUT = 600000; // 10-minute timeout
+    private final long DEFAULT_EXPIRATION = 1800000; // 30-minute expiration
 
     // Service configs
     private String scheme;
@@ -105,11 +108,82 @@ public class ServiceConfigs {
                 System.err.println("Logging output file: " + outputFile);
             }
 
-            // Set DB Configs
-            // TODO
+            // Set DB configs
+            dbUsername = cm.getDatabaseConfig().get("dbUsername");
+            if (dbUsername == null) {
+                System.err.println("No database username found in configuration file.");
+                dbConfigValid = false;
+            } else {
+                System.err.println("Database username: " + dbUsername);
+            }
+
+            dbPassword = cm.getDatabaseConfig().get("dbPassword");
+            if (dbPassword == null) {
+                System.err.println("No database password found in configuration file.");
+                dbConfigValid = false;
+            } else {
+                System.err.println("Database password found in configuration file.");
+            }
+
+            dbHostname = cm.getDatabaseConfig().get("dbHostname");
+            if (dbHostname == null) {
+                System.err.println("No database hostname found in configuration file.");
+                dbConfigValid = false;
+            } else {
+                System.err.println("Database hostname: " + dbHostname);
+            }
+
+            dbPort = Integer.parseInt(cm.getDatabaseConfig().get("dbPort"));
+            if (dbPort == 0) {
+                System.err.println("No database port found in configuration file.");
+                dbConfigValid = false;
+            } else if (dbPort < MIN_SERVICE_PORT || dbPort > MAX_SERVICE_PORT) {
+                System.err.println("Database port is not within a valid range.");
+                dbConfigValid = false;
+            } else {
+                System.err.println("Database port: " + dbPort);
+            }
+
+            dbName = cm.getDatabaseConfig().get("dbName");
+            if (dbName == null) {
+                System.err.println("No database name found in configuration file.");
+                dbConfigValid = false;
+            } else {
+                System.err.println("Database name: " + dbName);
+            }
+
+            dbDriver = cm.getDatabaseConfig().get("dbDriver");
+            if (dbDriver == null) {
+                System.err.println("No driver found in configuration file.");
+                dbConfigValid = false;
+            } else {
+                System.err.println("Database driver: " + dbDriver);
+            }
+
+            dbSettings = cm.getDatabaseConfig().get("dbSettings");
+            if (dbSettings == null) {
+                System.err.println("No connection settings found in configuration file.");
+                dbConfigValid = false;
+            } else {
+                System.err.println("Database connection settings: " + dbSettings);
+            }
 
             // Set session configs
-            // TODO
+            timeout = Long.parseLong(cm.getSessionConfig().get("timeout"));
+            if (timeout < 0) {
+                System.err.println("Invalid timeout found in configuration file. Using default.");
+                timeout = DEFAULT_TIMEOUT;
+            } else {
+                System.err.println("Timeout: " + timeout);
+            }
+
+            expiration = Long.parseLong(cm.getSessionConfig().get("expiration"));
+            if (expiration < 0) {
+                System.err.println("Invalid expiration found in configuration file. Using default.");
+                expiration = DEFAULT_EXPIRATION;
+            } else {
+                System.err.println("Expiration: " + expiration);
+            }
         }
     }
 
@@ -119,12 +193,15 @@ public class ServiceConfigs {
         ServiceLogger.LOGGER.config("Port: " + port);
         ServiceLogger.LOGGER.config("Path: " + path);
         ServiceLogger.LOGGER.config("Logger output directory: " + outputDir);
-
-        // Log the current DB configs
-        // TODO
-
-        // Log the current session configs
-        // TODO
+        ServiceLogger.LOGGER.config("Database hostname: " + dbHostname);
+        ServiceLogger.LOGGER.config("Database port: " + dbPort);
+        ServiceLogger.LOGGER.config("Database username: " + dbUsername);
+        ServiceLogger.LOGGER.config("Database password provided? " + (dbPassword != null));
+        ServiceLogger.LOGGER.config("Database name: " + dbName);
+        ServiceLogger.LOGGER.config("Database driver: " + dbDriver);
+        ServiceLogger.LOGGER.config("Database connection settings: " + dbSettings);
+        ServiceLogger.LOGGER.config("Timeout: " + timeout);
+        ServiceLogger.LOGGER.config("Database connection settings: " + dbSettings);
     }
 
     public String getScheme() {

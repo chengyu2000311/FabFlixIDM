@@ -1,4 +1,4 @@
-package edu.uci.ics.UCNETID.service.idm.security;
+package edu.uci.ics.hcheng10.service.idm.security;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
