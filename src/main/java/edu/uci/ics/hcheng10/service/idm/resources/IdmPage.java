@@ -29,8 +29,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 
-
-@Path("idm") // Outer path
+@Path("") // Outer path
 public class IdmPage {
 
     @Path("register")
@@ -81,9 +80,13 @@ public class IdmPage {
                 responseModel = new LoginResponseModel(-12, "Password has invalid length.",null);
                 ServiceLogger.LOGGER.info("Password has invalid length.");
                 return Response.status(Response.Status.BAD_REQUEST).entity(responseModel).build();
-            } else if (password.length < 7 || password.length > 16) {
-                responseModel = new LoginResponseModel(12, "Password does not meet length requirements.",null);
-                ServiceLogger.LOGGER.info("Password does not meet length requirements.");
+            } else if (password.length > 16) {
+                responseModel = new LoginResponseModel(-12, "Password has invalid length. <=16",null);
+                ServiceLogger.LOGGER.info("Password has invalid length. <=16");
+                return Response.status(Response.Status.BAD_REQUEST).entity(responseModel).build();
+            } else if (password.length < 7) {
+                responseModel = new LoginResponseModel(12, " Password does not meet length requirements. >=7",null);
+                ServiceLogger.LOGGER.info(" Password does not meet length requirements. >=7");
                 return Response.status(Response.Status.OK).entity(responseModel).build();
             }
 

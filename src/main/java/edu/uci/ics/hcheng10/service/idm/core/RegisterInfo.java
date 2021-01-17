@@ -4,10 +4,8 @@ import edu.uci.ics.hcheng10.service.idm.IDMService;
 import edu.uci.ics.hcheng10.service.idm.logger.ServiceLogger;
 import edu.uci.ics.hcheng10.service.idm.security.Crypto;
 import edu.uci.ics.hcheng10.service.idm.security.Session;
-import org.apache.commons.codec.Decoder;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
-import org.glassfish.jersey.message.internal.StringHeaderProvider;
 
 import javax.annotation.Nullable;
 import java.sql.*;

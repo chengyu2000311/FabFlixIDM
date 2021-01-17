@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import edu.uci.ics.hcheng10.service.idm.configs.ConfigsModel;
 import edu.uci.ics.hcheng10.service.idm.configs.ServiceConfigs;
-import edu.uci.ics.hcheng10.service.idm.core.NewRegisterInfo;
 import edu.uci.ics.hcheng10.service.idm.logger.ServiceLogger;
 import edu.uci.ics.hcheng10.service.idm.security.Session;
 import org.glassfish.grizzly.http.server.HttpServer;
